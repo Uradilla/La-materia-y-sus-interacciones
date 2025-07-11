@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía: Moléculas Orgánicas, Los Ladrillos de la Vida</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <!-- 
+    Plan de Narrativa y Estructura:
+    1.  Encabezado: Título atractivo sobre las moléculas orgánicas.
+    2.  Introducción: Breve descripción del carbono como base de la vida.
+    3.  Sección Carbohidratos: Visualización de su composición (Donut Chart) y jerarquía (HTML/CSS).
+    4.  Sección Lípidos: Comparación de densidad energética (Bar Chart) y tipos.
+    5.  Sección Proteínas: Muestra de su multifuncionalidad (Radar Chart) y diversidad.
+    6.  Sección Ácidos Nucleicos: Diagrama del dogma central (HTML/CSS) y tabla comparativa ADN vs ARN.
+    7.  Pie de página: Conclusión.
+
+    Selección de Visualizaciones (Confirmación NO SVG / NO MERMAID):
+    - Composición de Carbohidratos -> Informar -> Donut Chart (Chart.js/Canvas). Justificación: Ideal para mostrar proporciones.
+    - Jerarquía de Carbohidratos -> Organizar -> Diagrama de Flujo (HTML/CSS). Justificación: Evita SVG para un flujo simple.
+    - Comparación Energética -> Comparar -> Bar Chart (Chart.js/Canvas). Justificación: Estándar de oro para comparar valores.
+    - Multifuncionalidad de Proteínas -> Comparar -> Radar Chart (Chart.js/Canvas). Justificación: Muestra de forma efectiva múltiples atributos de una entidad.
+    - Dogma Central -> Organizar Proceso -> Diagrama de Flujo (HTML/CSS). Justificación: Flujo lineal simple, perfecto para HTML/CSS.
+    - ADN vs ARN -> Organizar/Comparar -> Tabla (HTML). Justificación: El método más claro para una comparación directa de características.
+
+    Paleta de Colores Seleccionada: "Vibrant & Dynamic" (#001F3F, #FF4136, #FFDC00, #0074D9, #FFFFFF)
+    -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #001F3F;
+            color: #FFFFFF;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 450px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 350px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+                max-height: 400px;
+            }
+        }
+        .card {
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="container mx-auto px-4 py-8 md:py-16">
+
+        <header class="text-center mb-12 md:mb-20">
+            <h1 class="text-4xl md:text-6xl font-black tracking-tighter leading-tight mb-2">Los Ladrillos de la Vida</h1>
+            <p class="text-lg md:text-xl text-cyan-300 max-w-3xl mx-auto">Una exploración visual de las cuatro moléculas orgánicas esenciales que construyen y potencian cada ser vivo.</p>
+        </header>
+
+        <main class="space-y-16">
+
+            <section id="carbohidratos" class="scroll-mt-16">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl md:text-4xl font-bold">1. Carbohidratos 🍭</h2>
+                    <p class="mt-2 text-lg text-gray-300">Conocidos como azúcares o glúcidos, son la principal fuente de combustible del cuerpo.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="card rounded-2xl p-6 shadow-2xl">
+                        <h3 class="text-xl font-bold mb-4 text-amber-300">Composición Elemental</h3>
+                        <p class="mb-4 text-gray-200">Los carbohidratos están formados por carbono, hidrógeno y oxígeno. Esta composición simple es la base de su rol como fuente de energía rápida y accesible para las células.</p>
+                        <div class="chart-container">
+                            <canvas id="carbChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="card rounded-2xl p-6 shadow-2xl">
+                        <h3 class="text-xl font-bold mb-4 text-amber-300">De lo Simple a lo Complejo</h3>
+                        <p class="mb-6 text-gray-200">Su estructura se organiza en niveles. Unidades simples se unen para formar cadenas largas y complejas que cumplen funciones de almacenamiento o estructurales.</p>
+                        <div class="space-y-4">
+                            <div class="bg-gray-800 p-3 rounded-lg text-center">
+                                <span class="font-bold text-lg">Monosacárido</span> (ej. Glucosa)
+                            </div>
+                            <div class="text-center text-2xl font-bold text-amber-300">↓</div>
+                            <div class="bg-gray-800 p-3 rounded-lg text-center">
+                                <span class="font-bold text-lg">Disacárido</span> (ej. Sacarosa)
+                            </div>
+                            <div class="text-center text-2xl font-bold text-amber-300">↓</div>
+                            <div class="bg-gray-800 p-3 rounded-lg text-center">
+                                <span class="font-bold text-lg">Polisacárido</span> (ej. Almidón, Celulosa)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="lipidos" class="scroll-mt-16">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl md:text-4xl font-bold">2. Lípidos 🧈</h2>
+                    <p class="mt-2 text-lg text-gray-300">Grasas, aceites y ceras. Moléculas hidrofóbicas vitales para el almacenamiento de energía.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                     <div class="card rounded-2xl p-6 shadow-2xl">
+                        <h3 class="text-xl font-bold mb-4 text-red-400">La Reserva Energética</h3>
+                        <p class="mb-4 text-gray-200">Los lípidos son la forma más eficiente de almacenar energía. Un gramo de grasa contiene más del doble de energía que un gramo de carbohidratos, siendo la reserva perfecta para el cuerpo.</p>
+                        <div class="chart-container">
+                            <canvas id="lipidChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="card rounded-2xl p-6 shadow-2xl">
+                         <h3 class="text-xl font-bold mb-4 text-red-400">Funciones Clave</h3>
+                         <p class="mb-6 text-gray-200">Más allá de la energía, los lípidos son fundamentales para la estructura y la comunicación celular.</p>
+                         <ul class="space-y-4 text-lg">
+                            <li class="flex items-start"><span class="text-red-400 mr-3 mt-1">🧱</span><div><strong class="block">Membranas Celulares:</strong> Los fosfolípidos forman la barrera que protege cada célula.</div></li>
+                            <li class="flex items-start"><span class="text-red-400 mr-3 mt-1">🌡️</span><div><strong class="block">Aislamiento y Protección:</strong> Protegen órganos vitales y mantienen la temperatura corporal.</div></li>
+                            <li class="flex items-start"><span class="text-red-400 mr-3 mt-1">✉️</span><div><strong class="block">Regulación Hormonal:</strong> Son precursores de hormonas como los esteroides.</div></li>
+                         </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section id="proteinas" class="scroll-mt-16">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl md:text-4xl font-bold">3. Proteínas 💪</h2>
+                    <p class="mt-2 text-lg text-gray-300">Las moléculas más versátiles, realizan la mayor parte del trabajo en las células.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="card rounded-2xl p-6 shadow-2xl">
+                        <h3 class="text-xl font-bold mb-4 text-blue-400">Las "Trabajadoras" Celulares</h3>
+                        <p class="mb-4 text-gray-200">Las proteínas son verdaderas navajas suizas moleculares. Su funcionalidad es tan amplia que participan en prácticamente todos los procesos biológicos, desde catalizar reacciones hasta defender el organismo.</p>
+                        <div class="chart-container">
+                            <canvas id="proteinChart"></canvas>
+                        </div>
+                    </div>
+                     <div class="card rounded-2xl p-6 shadow-2xl text-center">
+                        <h3 class="text-xl font-bold mb-4 text-blue-400">Construidas con Aminoácidos</h3>
+                        <p class="mb-6 text-gray-200">La increíble diversidad de funciones de las proteínas proviene de la combinación de sus 20 bloques de construcción básicos.</p>
+                        <div class="text-7xl md:text-8xl font-black text-blue-400">20</div>
+                        <div class="text-2xl font-bold mt-2">Tipos de Aminoácidos</div>
+                        <p class="mt-4 text-gray-300">La secuencia específica de estos aminoácidos determina la estructura 3D y la función única de cada proteína.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="acidos-nucleicos" class="scroll-mt-16">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl md:text-4xl font-bold">4. Ácidos Nucleicos 🧬</h2>
+                    <p class="mt-2 text-lg text-gray-300">El manual de instrucciones de la vida, almacenan y transmiten la información genética.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                     <div class="card rounded-2xl p-6 shadow-2xl">
+                        <h3 class="text-xl font-bold mb-4 text-fuchsia-400">El Flujo de la Información Genética</h3>
+                        <p class="mb-6 text-gray-200">Conocido como el "Dogma Central de la Biología Molecular", este proceso describe cómo las instrucciones codificadas en el ADN se convierten en proteínas funcionales.</p>
+                        <div class="flex items-center justify-around text-center">
+                            <div>
+                                <div class="text-5xl">🧬</div>
+                                <div class="font-bold mt-1">ADN</div>
+                                <div class="text-xs text-gray-400">(Almacenamiento)</div>
+                            </div>
+                             <div class="text-2xl font-bold text-fuchsia-400 mx-2">→</div>
+                             <div>
+                                <div class="text-5xl">📜</div>
+                                <div class="font-bold mt-1">ARN</div>
+                                <div class="text-xs text-gray-400">(Mensajero)</div>
+                            </div>
+                             <div class="text-2xl font-bold text-fuchsia-400 mx-2">→</div>
+                             <div>
+                                <div class="text-5xl">⚙️</div>
+                                <div class="font-bold mt-1">Proteína</div>
+                                <div class="text-xs text-gray-400">(Función)</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card rounded-2xl p-6 shadow-2xl">
+                        <h3 class="text-xl font-bold mb-4 text-fuchsia-400">ADN vs. ARN</h3>
+                        <p class="mb-4 text-gray-200">Aunque ambos son ácidos nucleicos, tienen diferencias estructurales y funcionales clave que definen sus roles.</p>
+                        <table class="w-full text-left">
+                            <thead class="bg-gray-800">
+                                <tr>
+                                    <th class="p-3">Característica</th>
+                                    <th class="p-3">ADN</th>
+                                    <th class="p-3">ARN</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-700">
+                                <tr><td class="p-3 font-bold">Azúcar</td><td class="p-3">Desoxirribosa</td><td class="p-3">Ribosa</td></tr>
+                                <tr><td class="p-3 font-bold">Bases</td><td class="p-3">A, G, C, <strong class="text-fuchsia-400">T</strong>imina</td><td class="p-3">A, G, C, <strong class="text-fuchsia-400">U</strong>racilo</td></tr>
+                                <tr><td class="p-3 font-bold">Estructura</td><td class="p-3">Doble hélice</td><td class="p-3">Cadena simple</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+        
+        <footer class="text-center mt-16 md:mt-24 pt-8 border-t border-gray-700">
+            <p class="text-gray-400">Juntas, estas cuatro moléculas crean la increíble complejidad y diversidad de la vida.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            const CHART_COLORS = {
+                red: 'rgba(255, 65, 54, 0.7)',
+                yellow: 'rgba(255, 220, 0, 0.7)',
+                blue: 'rgba(0, 116, 217, 0.7)',
+                fuchsia: 'rgba(240, 18, 190, 0.7)',
+                cyan: 'rgba(64, 224, 208, 0.7)',
+            };
+            const CHART_BORDERS = {
+                red: 'rgba(255, 65, 54, 1)',
+                yellow: 'rgba(255, 220, 0, 1)',
+                blue: 'rgba(0, 116, 217, 1)',
+                fuchsia: 'rgba(240, 18, 190, 1)',
+                cyan: 'rgba(64, 224, 208, 1)',
+            };
+            
+            function wrapLabel(label, maxWidth = 16) {
+                if (label.length <= maxWidth) {
+                    return label;
+                }
+                const words = label.split(' ');
+                let lines = [];
+                let currentLine = '';
+                words.forEach(word => {
+                    if ((currentLine + ' ' + word).trim().length > maxWidth && currentLine.length > 0) {
+                        lines.push(currentLine);
+                        currentLine = word;
+                    } else {
+                        currentLine = (currentLine + ' ' + word).trim();
+                    }
+                });
+                if (currentLine.length > 0) {
+                    lines.push(currentLine);
+                }
+                return lines;
+            }
+
+            const tooltipTitleCallback = (tooltipItems) => {
+                const item = tooltipItems[0];
+                let label = item.chart.data.labels[item.dataIndex];
+                if (Array.isArray(label)) {
+                  return label.join(' ');
+                } else {
+                  return label;
+                }
+            };
+            
+            const defaultChartOptions = {
+                maintainAspectRatio: false,
+                responsive: true,
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: '#FFFFFF',
+                            font: {
+                                size: 14
+                            }
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                           title: tooltipTitleCallback
+                        }
+                    }
+                }
+            };
+
+            const carbCtx = document.getElementById('carbChart');
+            if(carbCtx) {
+                new Chart(carbCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Carbono', 'Hidrógeno', 'Oxígeno'],
+                        datasets: [{
+                            label: 'Composición',
+                            data: [1, 2, 1],
+                            backgroundColor: [CHART_COLORS.yellow, CHART_COLORS.cyan, CHART_COLORS.red],
+                            borderColor: [CHART_BORDERS.yellow, CHART_BORDERS.cyan, CHART_BORDERS.red],
+                            borderWidth: 2
+                        }]
+                    },
+                    options: defaultChartOptions
+                });
+            }
+
+            const lipidCtx = document.getElementById('lipidChart');
+            if (lipidCtx) {
+                new Chart(lipidCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Lípidos', 'Carbohidratos'],
+                        datasets: [{
+                            label: 'Energía (kcal por gramo)',
+                            data: [9, 4],
+                            backgroundColor: [CHART_COLORS.red, CHART_COLORS.yellow],
+                            borderColor: [CHART_BORDERS.red, CHART_BORDERS.yellow],
+                            borderWidth: 2
+                        }]
+                    },
+                    options: {
+                        ...defaultChartOptions,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                ticks: { color: '#FFFFFF' },
+                                grid: { color: 'rgba(255,255,255,0.2)' }
+                            },
+                            x: {
+                                ticks: { color: '#FFFFFF' },
+                                grid: { color: 'rgba(255,255,255,0)' }
+                            }
+                        }
+                    }
+                });
+            }
+
+            const proteinCtx = document.getElementById('proteinChart');
+            if (proteinCtx) {
+                new Chart(proteinCtx, {
+                    type: 'radar',
+                    data: {
+                        labels: ['Enzimática', 'Estructural', 'Transporte', 'Defensa', 'Movimiento'],
+                        datasets: [{
+                            label: 'Capacidad Funcional',
+                            data: [9, 8, 7, 8, 9],
+                            backgroundColor: CHART_COLORS.blue,
+                            borderColor: CHART_BORDERS.blue,
+                            borderWidth: 2,
+                            pointBackgroundColor: CHART_BORDERS.blue,
+                            pointBorderColor: '#fff',
+                            pointHoverBackgroundColor: '#fff',
+                            pointHoverBorderColor: CHART_BORDERS.blue
+                        }]
+                    },
+                    options: {
+                        ...defaultChartOptions,
+                        scales: {
+                            r: {
+                                beginAtZero: true,
+                                angleLines: { color: 'rgba(255,255,255,0.3)' },
+                                grid: { color: 'rgba(255,255,255,0.3)' },
+                                pointLabels: { 
+                                    font: { size: 14 },
+                                    color: '#FFFFFF' 
+                                },
+                                ticks: {
+                                    color: '#001F3F',
+                                    backdropColor: 'rgba(255,255,255,0.8)',
+                                    backdropPadding: 4,
+                                    borderRadius: 4
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
